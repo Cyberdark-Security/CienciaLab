@@ -2,9 +2,11 @@ CienciaLab
 ==========
 CienciaLab is my Spanish-language fork of **myPhysicsLab**, a library of real-time
 interactive animated physics simulations originally created by Erik Neumann. I added a
-full Spanish (`es`) locale throughout the codebase (alongside the existing English and
-German locales), plus a new Spanish dashboard homepage and a GitHub Actions workflow
-that builds and publishes the site to GitHub Pages automatically.
+full Spanish (`es`) locale throughout the codebase, a Spanish dashboard homepage, and a
+GitHub Actions workflow that builds and publishes the site to GitHub Pages
+automatically. The published site is Spanish-only by design (the build is configured
+to only compile the `es` locale, even though the underlying English/German strings
+from upstream are still present in the source for reference).
 
 Live site: <https://cyberdark-security.github.io/CienciaLab/>
 

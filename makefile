@@ -56,7 +56,7 @@ BUILD_DIR := build
 
 # if LOCALE is not specified, then build all locale versions
 ifndef LOCALE
-    LOCALE := en de es
+    LOCALE := es
 endif
 
 biketimer: $(foreach loc,$(LOCALE),\
@@ -424,7 +424,7 @@ $(BUILD_DIR)/%-es.html : src/%.html src/index_order.txt $(macros_req) | settings
   $(BUILD_DIR)/%-es.js $(build_images) $(bld_css)
 	./prep_html.pl $< $@ src/index_order.txt
 
-index_files := $(BUILD_DIR)/index-en.html $(BUILD_DIR)/index-de.html $(BUILD_DIR)/index-es.html
+index_files := $(BUILD_DIR)/index-es.html
 $(index_files): $(BUILD_DIR)/index-%.html : src/index.html src/macros.html
 	@mkdir -v -p $(dir $@)
 	./prep_html.pl $< $@ ""
@@ -492,11 +492,9 @@ apps-de: $(BUILD_DIR)/index-de.html $(addsuffix -de.html,$(bld_apps))
 
 apps-es: $(BUILD_DIR)/index-es.html $(addsuffix -es.html,$(bld_apps))
 
-apps: apps-en apps-de apps-es
+apps: apps-es
 
-combos: $(BUILD_DIR)/sims/misc/CollisionCombo-en.js \
-$(BUILD_DIR)/sims/misc/CollisionCombo-de.js \
-$(BUILD_DIR)/sims/misc/CollisionCombo-es.js
+combos: $(BUILD_DIR)/sims/misc/CollisionCombo-es.js
 
 all: settings apps combos
 

@@ -35,7 +35,7 @@ jobs:
       - name: Compile TypeScript
         run: node_modules/.bin/tsc
 
-      - name: Build all locales (en, de, es)
+      - name: Build the site (Spanish only)
         run: make
 
       - name: Use the Spanish dashboard as the site root
