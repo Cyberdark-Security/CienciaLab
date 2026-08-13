@@ -1,0 +1,10 @@
+CienciaLab
+Copyright 2026 Cyberdark-Security
+
+Este proyecto incluye código derivado de myPhysicsLab
+(https://github.com/myphysicslab/myphysicslab), Copyright 2016-2023 Erik Neumann
+<erikn@myphysicslab.com>, usado bajo licencia Apache License, Version 2.0.
+
+Las modificaciones respecto al original incluyen: traducción de la interfaz al
+español (locale "es"), un dashboard/página de inicio propio en español, y ajustes
+al proceso de build para publicar el sitio en GitHub Pages.

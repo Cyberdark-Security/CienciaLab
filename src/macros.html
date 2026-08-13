@@ -221,20 +221,11 @@
 <script>var app#APP_NUM; if (app#APP_NUM) app#APP_NUM.setup();</script>\
 <script>var app#APP_NUM; if (app#APP_NUM) app#APP_NUM.start();</script>
 
-#define #PAGE_FOOTER <div id="footer2" >\
-  <div id="copyright">\
-    &copy; <a href="mailto:erikn\@MyPhysicsLab.com" \
-    title="copyright 2020 Erik Neumann">\
-    Erik Neumann</a> 2020, available under\
-    <a href="https://www.apache.org/licenses/LICENSE-2.0">Apache License, Version 2</a>\
-    <br><span id="revised_date">revised #DATE_TIME</span>\
-  </div>\
-  <a id="valid_html" href="https://validator.w3.org/check?uri=referer;outline=1;"\
-      title="check if this page is valid HTML">\
-  <img  src="#IMAGES_DIR/ValidHTML401.png" alt="Valid HTML 4.01" \
-      height="31" width="88">\
-  </a>\
-</div>
+#comment PAGE_FOOTER (copyright notice, revised date, Valid HTML badge) removed
+#comment from individual simulation pages per user request; the required Apache
+#comment License copyright notice is kept on the homepage (dashboard-es.html) and
+#comment in the repository's LICENSE/NOTICE files instead.
+#define #PAGE_FOOTER
 
 #comment "Lorem ipsum" text was used upstream to test scrolling of the web page;
 #comment removed for CienciaLab since these pages are the public site, not a dev test.
