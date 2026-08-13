@@ -23,7 +23,14 @@ html {
 
 a#logo {
   float: right;
-  margin: -9px 5px 0 0;
+  margin: -2px 5px 0 0;
+  font: bold 150% sans-serif;
+  text-decoration: none;
+  color: #222;
+}
+a#logo em {
+  font-style: normal;
+  color: #b0233a;
 }
 ul#header_bar, ul.horiz_tabs {
   padding: 3px 0 0 0;
@@ -168,14 +175,13 @@ p {
 /****** FOOTER ********/
 
 div#footer2 {
-  text-align: right;
+  text-align: center;
   margin: 1.2em 0 0.3em 0;
 }
 
 div#copyright {
-  display: inline-block;
-  float: left;
-  text-align: left;
+  display: block;
+  text-align: center;
   font: bold 90% Verdana, sans-serif;
 }
 
