@@ -1,0 +1,444 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CienciaLab — Laboratorio de Física Interactivo</title>
+<meta name="description" content="Simulaciones de física interactivas en español: péndulos, resortes, colisiones, rampas y más. Manipula la física en tiempo real, directamente en tu navegador.">
+<link rel="icon" href="images/myphysicsicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Piazzolla:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Public+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:      #f2efe7;
+    --paper-deep: #eae5d8;
+    --ink:        #1b1a17;
+    --ink-soft:   #55524a;
+    --rule:       #d8d2c1;
+
+    --c-pendulos:    #8f5a1e;
+    --c-pendulos-ink:#5c3712;
+    --c-resortes:    #1f7a6c;
+    --c-resortes-ink:#0d3a33;
+    --c-colisiones:  #a83a2e;
+    --c-colisiones-ink:#5a1c15;
+    --c-rampas:      #2456a6;
+    --c-rampas-ink:  #12274f;
+    --c-edp:         #6b3f8f;
+    --c-edp-ink:     #37204a;
+    --c-experimental:#4a4f57;
+    --c-experimental-ink:#25272b;
+
+    --serif: "Piazzolla", Georgia, "Times New Roman", serif;
+    --sans: "Public Sans", -apple-system, "Segoe UI", Arial, sans-serif;
+  }
+
+  *{ box-sizing: border-box; }
+  html{ -webkit-text-size-adjust: 100%; }
+  body{
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--sans);
+    line-height: 1.5;
+  }
+  a{ color: inherit; text-decoration: none; }
+  .wrap{ max-width: 1120px; margin: 0 auto; padding: 0 24px; }
+
+  /* ---------- masthead ---------- */
+  .masthead{
+    border-bottom: 3px solid var(--ink);
+    padding: 22px 0 16px;
+  }
+  .masthead .wrap{
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px 24px;
+  }
+  .wordmark{
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 700;
+    font-size: clamp(2rem, 5vw, 2.9rem);
+    letter-spacing: -0.01em;
+    animation: settle 520ms cubic-bezier(.2,.7,.2,1) both;
+  }
+  .wordmark em{ font-style: normal; color: var(--c-colisiones); }
+  @keyframes settle{
+    from{ opacity: 0; transform: translateY(6px); letter-spacing: 0.08em; }
+    to{ opacity: 1; transform: translateY(0); letter-spacing: -0.01em; }
+  }
+  .kicker-line{
+    font-family: var(--sans);
+    font-weight: 600;
+    font-size: 0.72rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+  .kicker-line a{ text-decoration: underline; text-decoration-color: var(--rule); text-underline-offset: 3px; }
+  .kicker-line a:hover{ text-decoration-color: currentColor; }
+
+  /* ---------- cover / intro ---------- */
+  .cover{ padding: 34px 0 26px; border-bottom: 1px solid var(--rule); }
+  .cover p{
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: clamp(1.15rem, 2.4vw, 1.55rem);
+    line-height: 1.45;
+    max-width: 44ch;
+    margin: 0;
+  }
+  .cover .meta{
+    margin-top: 14px;
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+  }
+  .cover .meta strong{ color: var(--ink); }
+
+  /* ---------- search ---------- */
+  .finder{ padding: 20px 0; }
+  .finder input{
+    width: 100%;
+    font: inherit;
+    font-family: var(--sans);
+    font-size: 1rem;
+    padding: 12px 16px;
+    border: 1.5px solid var(--ink);
+    border-radius: 3px;
+    background: var(--paper);
+    color: var(--ink);
+  }
+  .finder input::placeholder{ color: var(--ink-soft); }
+  .finder input:focus{ outline: 3px solid var(--c-rampas); outline-offset: 1px; }
+  .finder .count{ margin-top: 8px; font-size: 0.8rem; color: var(--ink-soft); }
+
+  /* ---------- departments ---------- */
+  main{ padding-bottom: 60px; }
+  .dept{ margin-top: 34px; }
+  .dept-head{
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+    padding: 14px 20px;
+    border-radius: 3px;
+    color: #fbf9f3;
+  }
+  .dept-head .num{
+    font-family: var(--serif);
+    font-weight: 700;
+    font-size: 1.6rem;
+    opacity: 0.85;
+    min-width: 2ch;
+  }
+  .dept-head .titles{ flex: 1 1 auto; min-width: 0; }
+  .dept-head h2{
+    font-family: var(--serif);
+    font-weight: 600;
+    font-size: clamp(1.2rem, 2.6vw, 1.55rem);
+    margin: 0 0 3px;
+  }
+  .dept-head .blurb{
+    font-size: 0.86rem;
+    opacity: 0.92;
+    max-width: 62ch;
+  }
+  .dept-head .tally{
+    font-family: var(--sans);
+    font-weight: 600;
+    font-size: 0.78rem;
+    letter-spacing: 0.04em;
+    white-space: nowrap;
+    opacity: 0.9;
+    align-self: center;
+  }
+
+  .dept-pendulos     .dept-head{ background: var(--c-pendulos); }
+  .dept-resortes     .dept-head{ background: var(--c-resortes); }
+  .dept-colisiones   .dept-head{ background: var(--c-colisiones); }
+  .dept-rampas       .dept-head{ background: var(--c-rampas); }
+  .dept-edp          .dept-head{ background: var(--c-edp); }
+  .dept-experimental .dept-head{ background: var(--c-experimental); }
+
+  .entries{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    background: var(--paper-deep);
+    border: 1px solid var(--rule);
+    border-top: none;
+  }
+  .entries li{ border-right: 1px solid var(--rule); border-bottom: 1px solid var(--rule); }
+  .entries li:nth-child(3n){ border-right: none; }
+  .entries a{
+    display: block;
+    padding: 12px 16px;
+    font-size: 0.92rem;
+    border-left: 3px solid transparent;
+  }
+  .dept-pendulos     .entries a:hover{ border-left-color: var(--c-pendulos);     background: #fff; color: var(--c-pendulos-ink); }
+  .dept-resortes     .entries a:hover{ border-left-color: var(--c-resortes);     background: #fff; color: var(--c-resortes-ink); }
+  .dept-colisiones   .entries a:hover{ border-left-color: var(--c-colisiones);   background: #fff; color: var(--c-colisiones-ink); }
+  .dept-rampas       .entries a:hover{ border-left-color: var(--c-rampas);       background: #fff; color: var(--c-rampas-ink); }
+  .dept-edp          .entries a:hover{ border-left-color: var(--c-edp);         background: #fff; color: var(--c-edp-ink); }
+  .dept-experimental .entries a:hover{ border-left-color: var(--c-experimental); background: #fff; color: var(--c-experimental-ink); }
+  .entries a:focus-visible{ outline: 2px solid var(--ink); outline-offset: -2px; }
+
+  .entries li[hidden]{ display: none; }
+  .dept[hidden]{ display: none; }
+
+  @media (max-width: 860px){
+    .entries{ grid-template-columns: repeat(2, 1fr); }
+    .entries li:nth-child(3n){ border-right: 1px solid var(--rule); }
+    .entries li:nth-child(2n){ border-right: none; }
+  }
+  @media (max-width: 560px){
+    .entries{ grid-template-columns: 1fr; }
+    .entries li{ border-right: none !important; }
+    .dept-head{ flex-wrap: wrap; }
+    .dept-head .tally{ order: 3; width: 100%; }
+  }
+
+  /* ---------- footer ---------- */
+  footer{
+    border-top: 3px solid var(--ink);
+    padding: 22px 0 40px;
+    font-size: 0.78rem;
+    color: var(--ink-soft);
+  }
+  footer p{ margin: 4px 0; }
+  footer a{ text-decoration: underline; text-decoration-color: var(--rule); }
+  footer a:hover{ text-decoration-color: currentColor; }
+</style>
+</head>
+<body>
+<!--
+THESIS: An editorial science-magazine table of contents, not an app dashboard —
+physics topics as printed departments with committed spot color, refusing the
+flat white-card/blue-accent SaaS-dashboard default.
+OWN-WORLD: Piazzolla serif display + Public Sans body on a warm paper ground;
+six named department colors (not one hero accent) each owning a full-width
+section band; hairline rules; numbered kickers like a magazine spread.
+STORY: visitor reads the masthead and cover line, scans six colored physics
+departments, filters or browses, opens a simulation article (the actual sim).
+FIRST VIEWPORT: masthead + license kicker, cover sentence, search field, and
+the first department band all visible before scrolling on desktop.
+FORM: assigned direction (grounded candidate 7, seed 3479d6b6: revista de
+divulgación científica), raised with a fixed non-reflowing masthead (donated
+discipline, PC98 challenger, declined), status text printed as plain counts
+not icons (donated, phosphor-terminal challenger, declined), and one
+restrained settle-in on the wordmark only (donated, alphabet-storm challenger,
+declined).
+FINISH: unreviewed and undocumented is unfinished; this build ends with the
+finish review, the verdict, and DESIGN.md
+-->
+<header class="masthead">
+  <div class="wrap">
+    <div class="wordmark">Ciencia<em>Lab</em></div>
+    <div class="kicker-line">Física interactiva, en español · basado en <a href="https://www.myphysicslab.com" rel="noopener">myPhysicsLab</a></div>
+  </div>
+</header>
+
+<div class="cover wrap">
+  <p>Un laboratorio de física para tocar, arrastrar y romper — cada simulación corre en tiempo real en tu navegador, en español.</p>
+  <div class="meta"><strong id="total-count">71</strong> simulaciones interactivas, organizadas en <strong>6</strong> secciones.</div>
+</div>
+
+<div class="finder wrap">
+  <input type="search" id="q" placeholder="Buscar una simulación… (ej. resorte, colisión, péndulo)" aria-label="Buscar simulación">
+  <div class="count" id="q-count"></div>
+</div>
+
+<main class="wrap">
+
+  <section class="dept dept-pendulos" data-dept="Péndulos">
+    <div class="dept-head">
+      <span class="num">01</span>
+      <div class="titles">
+        <h2>Péndulos</h2>
+        <div class="blurb">Del péndulo simple al doble caótico: oscilaciones, resonancia y sensibilidad a las condiciones iniciales.</div>
+      </div>
+      <div class="tally">12 simulaciones</div>
+    </div>
+    <ul class="entries">
+      <li><a href="sims/pendulum/PendulumApp-es.html">Péndulo simple</a></li>
+      <li><a href="sims/pendulum/DoublePendulumApp-es.html">Péndulo doble</a></li>
+      <li><a href="sims/pendulum/ComparePendulumApp-es.html">Comparar péndulos</a></li>
+      <li><a href="sims/pendulum/CompareDoublePendulumApp-es.html">Comparar péndulos dobles</a></li>
+      <li><a href="sims/pendulum/CompareDoublePendulumApp2-es.html">Comparar péndulos dobles (variante)</a></li>
+      <li><a href="sims/pendulum/CartPendulumApp-es.html">Péndulo sobre carro</a></li>
+      <li><a href="sims/pendulum/MoveablePendulumApp-es.html">Péndulo con soporte móvil</a></li>
+      <li><a href="sims/pendulum/MoveableDoublePendulumApp-es.html">Péndulo doble con soporte móvil</a></li>
+      <li><a href="sims/pendulum/ReactionPendulumApp-es.html">Péndulo de reacción</a></li>
+      <li><a href="sims/pendulum/RigidDoublePendulumApp-es.html">Péndulo doble rígido</a></li>
+      <li><a href="sims/pendulum/RigidDoublePendulumApp2-es.html">Péndulo doble rígido (variante)</a></li>
+      <li><a href="sims/pendulum/VectorGraphPendulumApp-es.html">Péndulo con gráfico de vectores</a></li>
+    </ul>
+  </section>
+
+  <section class="dept dept-resortes" data-dept="Resortes y Osciladores">
+    <div class="dept-head">
+      <span class="num">02</span>
+      <div class="titles">
+        <h2>Resortes y Osciladores</h2>
+        <div class="blurb">Masas, resortes y moléculas — energía potencial elástica, acoplamiento y movimiento armónico.</div>
+      </div>
+      <div class="tally">16 simulaciones</div>
+    </div>
+    <ul class="entries">
+      <li><a href="sims/springs/SingleSpringApp-es.html">Resorte simple</a></li>
+      <li><a href="sims/springs/SingleSpring2App-es.html">Resorte simple (variante 2)</a></li>
+      <li><a href="sims/springs/SingleSpring3App-es.html">Resorte simple (variante 3)</a></li>
+      <li><a href="sims/springs/DoubleSpringApp-es.html">Resorte doble</a></li>
+      <li><a href="sims/springs/Spring2DApp-es.html">Resorte en 2D</a></li>
+      <li><a href="sims/springs/Double2DSpringApp-es.html">Doble resorte en 2D</a></li>
+      <li><a href="sims/springs/MultiSpringApp-es.html">Cadena de resortes (interactiva)</a></li>
+      <li><a href="sims/springs/ChainOfSpringsApp-es.html">Cadena de resortes</a></li>
+      <li><a href="sims/springs/DangleStickApp-es.html">Barra colgante con resorte</a></li>
+      <li><a href="sims/springs/CollideSpringApp-es.html">Colisión con resorte</a></li>
+      <li><a href="sims/springs/CollideBlocksApp-es.html">Colisión de bloques</a></li>
+      <li><a href="sims/springs/Molecule1App-es.html">Molécula (1 átomo móvil)</a></li>
+      <li><a href="sims/springs/Molecule2App-es.html">Molécula (variante 2)</a></li>
+      <li><a href="sims/springs/Molecule3App-es.html">Molécula (3 átomos)</a></li>
+      <li><a href="sims/springs/TerminalSpringApp-es.html">Resorte por terminal (consola)</a></li>
+      <li><a href="sims/springs/TerminalSpring2DApp-es.html">Resorte 2D por terminal (consola)</a></li>
+    </ul>
+  </section>
+
+  <section class="dept dept-colisiones" data-dept="Colisiones y Cuerpos Rígidos">
+    <div class="dept-head">
+      <span class="num">03</span>
+      <div class="titles">
+        <h2>Colisiones y Cuerpos Rígidos</h2>
+        <div class="blurb">Billar, engranajes, cunas de Newton y física de contacto — el motor de cuerpos rígidos en 2D.</div>
+      </div>
+      <div class="tally">26 simulaciones</div>
+    </div>
+    <ul class="entries">
+      <li><a href="sims/engine2D/BilliardsApp-es.html">Billar</a></li>
+      <li><a href="sims/engine2D/Billiards2App-es.html">Billar (variante 2)</a></li>
+      <li><a href="sims/engine2D/NewtonsCradleApp-es.html">Cuna de Newton</a></li>
+      <li><a href="sims/engine2D/ImpulseApp-es.html">Impulso y colisiones</a></li>
+      <li><a href="sims/engine2D/FastBallApp-es.html">Bola rápida</a></li>
+      <li><a href="sims/engine2D/MultipleCollisionApp-es.html">Colisiones múltiples</a></li>
+      <li><a href="sims/engine2D/ContactApp-es.html">Contacto entre cuerpos</a></li>
+      <li><a href="sims/engine2D/RigidBodyApp-es.html">Cuerpos rígidos</a></li>
+      <li><a href="sims/engine2D/TestBodyApp-es.html">Cuerpo de prueba</a></li>
+      <li><a href="sims/engine2D/PolygonTestApp-es.html">Prueba de polígonos</a></li>
+      <li><a href="sims/engine2D/CurvedTestApp-es.html">Prueba de bordes curvos</a></li>
+      <li><a href="sims/engine2D/ChainApp-es.html">Cadena articulada</a></li>
+      <li><a href="sims/engine2D/GearsApp-es.html">Engranajes</a></li>
+      <li><a href="sims/engine2D/PendulumClockApp-es.html">Reloj de péndulo</a></li>
+      <li><a href="sims/engine2D/PendulumSpringApp-es.html">Péndulo con resorte</a></li>
+      <li><a href="sims/engine2D/CartPendulum2App-es.html">Péndulo sobre carro (avanzado)</a></li>
+      <li><a href="sims/engine2D/DoublePendulum2App-es.html">Péndulo doble (cuerpo rígido)</a></li>
+      <li><a href="sims/engine2D/CarSuspensionApp-es.html">Suspensión de auto</a></li>
+      <li><a href="sims/engine2D/MutualAttractApp-es.html">Atracción gravitacional mutua</a></li>
+      <li><a href="sims/engine2D/MarsMoonApp-es.html">Marte y su luna</a></li>
+      <li><a href="sims/engine2D/PileApp-es.html">Pila de cuerpos</a></li>
+      <li><a href="sims/engine2D/PileAttractApp-es.html">Pila con atracción gravitacional</a></li>
+      <li><a href="sims/engine2D/CreateApp-es.html">Editor de escenas</a></li>
+      <li><a href="sims/engine2D/CreateApp2-es.html">Editor de escenas (variante 2)</a></li>
+      <li><a href="sims/engine2D/BlankApp-es.html">Plantilla en blanco</a></li>
+      <li><a href="sims/engine2D/DoNothingApp-es.html">Prueba: sin fuerzas</a></li>
+    </ul>
+  </section>
+
+  <section class="dept dept-rampas" data-dept="Movimiento en Rampas y Curvas">
+    <div class="dept-head">
+      <span class="num">04</span>
+      <div class="titles">
+        <h2>Movimiento en Rampas y Curvas</h2>
+        <div class="blurb">Bolas rodando sobre trayectorias curvas — energía, velocidad y la curva braquistócrona.</div>
+      </div>
+      <div class="tally">7 simulaciones</div>
+    </div>
+    <ul class="entries">
+      <li><a href="sims/roller/RollerSingleApp-es.html">Bola en una rampa</a></li>
+      <li><a href="sims/roller/RollerDoubleApp-es.html">Dos bolas en la misma rampa</a></li>
+      <li><a href="sims/roller/RollerFlightApp-es.html">Bola que despega de la rampa</a></li>
+      <li><a href="sims/roller/RollerSpringApp-es.html">Rampa con resorte</a></li>
+      <li><a href="sims/roller/RigidBodyRollerApp-es.html">Cuerpo rígido en una rampa</a></li>
+      <li><a href="sims/roller/LagrangeRollerApp-es.html">Rampa (mecánica de Lagrange)</a></li>
+      <li><a href="sims/roller/BrachistoApp-es.html">Curva braquistócrona</a></li>
+    </ul>
+  </section>
+
+  <section class="dept dept-edp" data-dept="Ecuaciones Diferenciales">
+    <div class="dept-head">
+      <span class="num">05</span>
+      <div class="titles">
+        <h2>Ecuaciones Diferenciales</h2>
+        <div class="blurb">La cuerda vibrante como ecuación de onda continua, resuelta y animada en el navegador.</div>
+      </div>
+      <div class="tally">1 simulación</div>
+    </div>
+    <ul class="entries">
+      <li><a href="sims/pde/StringApp-es.html">Cuerda vibrante (ecuación de ondas)</a></li>
+    </ul>
+  </section>
+
+  <section class="dept dept-experimental" data-dept="Experimental y Miscelánea">
+    <div class="dept-head">
+      <span class="num">06</span>
+      <div class="titles">
+        <h2>Experimental y Miscelánea</h2>
+        <div class="blurb">Calculadoras gráficas, ruedas magnéticas y otras piezas sueltas del laboratorio.</div>
+      </div>
+      <div class="tally">9 simulaciones</div>
+    </div>
+    <ul class="entries">
+      <li><a href="sims/misc/CollisionCombo-es.html">Combinación de colisiones</a></li>
+      <li><a href="sims/misc/MagnetWheelApp-es.html">Rueda magnética</a></li>
+      <li><a href="sims/misc/RobotSpeedApp-es.html">Velocidad de robot</a></li>
+      <li><a href="sims/experimental/BikeTimerApp-es.html">Cronómetro de bicicleta</a></li>
+      <li><a href="sims/experimental/BlankSlateApp-es.html">Lienzo en blanco</a></li>
+      <li><a href="sims/experimental/GraphCalcApp-es.html">Calculadora gráfica</a></li>
+      <li><a href="sims/experimental/GraphCalc2App-es.html">Calculadora gráfica (variante 2)</a></li>
+      <li><a href="sims/experimental/MultiGraphCalc2App-es.html">Calculadora gráfica múltiple</a></li>
+      <li><a href="sims/experimental/SimpleApp-es.html">Plantilla simple</a></li>
+    </ul>
+  </section>
+
+</main>
+
+<footer class="wrap">
+  <p>CienciaLab es un proyecto independiente: una traducción y curaduría al español de <a href="https://www.myphysicslab.com" rel="noopener">myPhysicsLab</a>, creado originalmente por Erik Neumann. El código fuente está disponible en <a href="https://github.com/Cyberdark-Security/CienciaLab" rel="noopener">github.com/Cyberdark-Security/CienciaLab</a>.</p>
+  <p>© Erik Neumann 2020, disponible bajo licencia Apache, versión 2.0. También hay versiones en <a href="index-en.html">inglés</a> y <a href="index-de.html">alemán</a>.</p>
+</footer>
+
+<script>
+(function(){
+  var input = document.getElementById('q');
+  var countEl = document.getElementById('q-count');
+  var depts = Array.prototype.slice.call(document.querySelectorAll('.dept'));
+  var items = Array.prototype.slice.call(document.querySelectorAll('.entries li'));
+
+  function norm(s){
+    return s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '');
+  }
+
+  input.addEventListener('input', function(){
+    var term = norm(input.value.trim());
+    var shown = 0;
+    depts.forEach(function(dept){
+      var visibleInDept = 0;
+      dept.querySelectorAll('.entries li').forEach(function(li){
+        var text = norm(li.textContent);
+        var match = !term || text.indexOf(term) !== -1;
+        li.hidden = !match;
+        if(match){ visibleInDept++; shown++; }
+      });
+      dept.hidden = visibleInDept === 0;
+    });
+    countEl.textContent = term ? (shown + ' de ' + items.length + ' simulaciones encontradas') : '';
+  });
+})();
+</script>
+</body>
+</html>
