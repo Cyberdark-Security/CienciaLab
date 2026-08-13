@@ -102,6 +102,11 @@
 #define #de_SPANISH_SELECTED
 #define #es_SPANISH_SELECTED selected
 
+#define #I18N_HOME ##LOCALE#_HOME
+#define #en_HOME home
+#define #de_HOME Startseite
+#define #es_HOME inicio
+
 #define #I18N_NEXT ##LOCALE#_NEXT
 #define #en_NEXT next
 #define #de_NEXT n&auml;chste
@@ -120,6 +125,9 @@
     <option value="#FILE_NAME#-es.html" #I18N_SPANISH_SELECTED>#I18N_SPANISH</option>\
   </select>
 
+#define #HOME_ANCHOR_TAG <a class="nav_link" \
+   href="#TOP_DIR/index.html">#I18N_HOME</a>
+
 #define #PREV_ANCHOR_TAG <a class="nav_link" \
    href="#TOP_DIR/#PREV_LINK#-#LOCALE.html">#I18N_PREVIOUS</a>
 
@@ -131,6 +139,7 @@
 
 #define #HEADER_BAR <div id="header_nav">\
 #LANGUAGE_MENU\
+#HOME_ANCHOR_TAG\
 #PREV_ANCHOR_TAG\
 #NEXT_ANCHOR_TAG\
 </div>\
