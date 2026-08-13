@@ -1,0 +1,65 @@
+name: Build and deploy to GitHub Pages
+
+on:
+  push:
+    branches: [ master ]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install TypeScript and esbuild
+        run: npm install --no-save typescript@7.0.2 esbuild@0.28.2
+
+      - name: Symlink esbuild executable
+        run: ln -sf node_modules/esbuild/bin/esbuild esbuild
+
+      - name: Compile TypeScript
+        run: node_modules/.bin/tsc
+
+      - name: Build all locales (en, de, es)
+        run: make
+
+      - name: Add root redirect to Spanish index
+        run: |
+          cat > build/index.html <<'EOF'
+          <!doctype html>
+          <meta charset="utf-8">
+          <meta http-equiv="refresh" content="0; url=index-es.html">
+          <link rel="canonical" href="index-es.html">
+          <p><a href="index-es.html">Continuar / Continue</a></p>
+          EOF
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: build
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
