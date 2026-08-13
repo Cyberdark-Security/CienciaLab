@@ -162,19 +162,12 @@
 #comment Set MYPHYSICSLAB_DIR to absolute URL for production
 #comment #MYPHYSICSLAB_DIR https://www.myphysicslab.com
 
+#comment PAGE_INFO used to show a "this is a test/dev page" notice with a link to
+#comment myphysicslab.com; removed for CienciaLab since these pages are the public site.
 #define #PAGE_INFO ##LOCALE#_PAGE_INFO
-#define #en_PAGE_INFO <p style="clear: both;">This page is for testing and development\
-please see <a href="#MYPHYSICSLAB_URL">myPhysicsLab</a> for the published\
-version of this simulation.</p>
-
-#define #de_PAGE_INFO <p style="clear: both;">Dies ist eine\
-<em>Test Web Seite f&uuml;r Entwicklung</em>, bitte nutzen Sie\
-<a href="#MYPHYSICSLAB_URL">myPhysicsLab</a> f&uuml; die\
-ver&ouml;ffentlichte Version dieser Simulation.</p>
-
-#define #es_PAGE_INFO <p style="clear: both;">Esta p&aacute;gina es para pruebas y\
-desarrollo, por favor visite <a href="#MYPHYSICSLAB_URL">myPhysicsLab</a> para la\
-versi&oacute;n publicada de esta simulaci&oacute;n.</p>
+#define #en_PAGE_INFO
+#define #de_PAGE_INFO
+#define #es_PAGE_INFO
 
 #define #LOAD_APP <script src="#APP_NAME#-#LOCALE.js"></script>
 
@@ -245,48 +238,6 @@ versi&oacute;n publicada de esta simulaci&oacute;n.</p>
   </a>\
 </div>
 
-#comment "Lorem ipsum" text is used to test scrolling of the web page.
-
-#define #LOREM_IPSUM  \
-  <p style="clear: both;">Lorem ipsum dolor sit amet, consectetur adipiscing elit.\
-  Donec accumsan erat mi,\
-  in ornare ex pretium vel. Duis at lectus id tortor varius facilisis sed sed sem. Ut\
-  vel dolor nec ligula scelerisque imperdiet. Suspendisse nisi nulla, dignissim eget\
-  ultrices nec, accumsan quis dui. Suspendisse tristique malesuada iaculis. Praesent\
-  mollis luctus magna eu auctor. Nam in mauris ut nunc aliquam varius. Quisque vitae mi\
-  bibendum, lacinia risus in, blandit mi. Nunc porta, enim ut dictum consectetur, odio\
-  neque feugiat eros, id vestibulum ante augue ac mauris. Duis tempor fermentum enim\
-  mattis. Sed vulputate sem vitae laoreet fringilla. Suspendisse dictum vehicula\
-  interdum. Praesent sollicitudin, nibh ac pellentesque malesuada, tellus mi vulputate\
-  tellus, in rutrum metus sem quis ipsum. Mauris facilisis turpis felis, quis\
-  sollicitudin urna elementum sed. Phasellus gravida scelerisque eros id sollicitudin.\
-  Morbi tempor malesuada nunc eget elementum. </p>\
-\
-   <p> Cras a libero ac dolor luctus aliquam non id turpis. Donec eleifend dui eget ex\
-  accumsan, sit amet pretium metus consectetur. Nunc ut condimentum sem. Mauris elit\
-  rhoncus, ornare orci ac, ornare libero. Mauris ac placerat mauris. Integer ornare\
-  euismod justo, a scelerisque diam porta sed. Nulla scelerisque leo consectetur porta\
-  porttitor. Cras finibus, massa vel finibus faucibus, mauris nisi hendrerit urna, sit\
-  amet consequat elit nunc eget tellus. Nulla laoreet odio sem, cursus porttitor erat\
-  bibendum sed. Nullam auctor, diam a malesuada vulputate, lectus lorem imperdiet urna,\
-  a tempus nisi nunc condimentum erat. Vivamus in ante sed turpis volutpat sagittis.\
-  Donec egestas nulla vitae felis suscipit, quis fringilla sapien vulputate. </p>\
-\
-   <p> Mauris consequat, ex a ultrices finibus, est sapien imperdiet velit, ac\
-  ullamcorper elit turpis a leo. Etiam ut turpis metus. In vulputate consequat lacus,\
-  sit amet vulputate sem tincidunt vitae. Vestibulum eget consequat est, quis sagittis\
-  dui. Etiam sit amet convallis risus. Sed ut porttitor eros, ut sodales nibh. In id\
-  pharetra risus. </p>\
-\
-   <p> Vivamus dignissim sit amet quam ac faucibus. Phasellus luctus augue sed erat\
-  hendrerit, ac efficitur lacus malesuada. Sed a venenatis nisl. Aenean pharetra\
-  tortor, at faucibus mi hendrerit vel. Curabitur pellentesque dapibus sapien, dapibus\
-  consectetur nulla varius et. Pellentesque ac nisl lorem. Donec pharetra at neque ut\
-  vestibulum. Nullam ipsum lorem, accumsan id enim nec, maximus gravida lectus. Aliquam\
-  in pretium tellus. </p>\
-\
-  <p> Maecenas condimentum nisi vel felis vulputate, a dignissim lectus dictum. Nulla\
-  facilisi. Curabitur ut nisi sem. Donec elementum vehicula lobortis. Vestibulum ante\
-  ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec ut\
-  fringilla, ultrices enim non, sollicitudin dui. In egestas nunc ut sodales cursus.\
-  </p>
+#comment "Lorem ipsum" text was used upstream to test scrolling of the web page;
+#comment removed for CienciaLab since these pages are the public site, not a dev test.
+#define #LOREM_IPSUM
