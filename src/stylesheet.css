@@ -11,12 +11,30 @@
 * GENERAL TEXT & HEADINGS
 */
 
+:root {
+  --void:      #05060a;
+  --panel:     #10131c;
+  --panel-deep:#0b0d14;
+  --line:      #232838;
+  --text:      #eef1f6;
+  --text-dim:  #8993a8;
+  --accent-a:  #37e6ff;
+  --accent-b:  #ff3df0;
+}
+
 /* After orientation change (portrait to landscape), to keep the text from getting
 * bigger we need webkit-text-size-adjust:none
 */
 html {
   -webkit-text-size-adjust: none;
   text-size-adjust: none;
+  color-scheme: dark;
+  accent-color: var(--accent-a);
+}
+body {
+  background: var(--void);
+  color: var(--text);
+  font-family: "Manrope", -apple-system, "Segoe UI", Arial, sans-serif;
 }
 
 /****** HEADER BAR: LOGO, TABS, LANGUAGE MENU, NAV-LINKS **********/
@@ -24,20 +42,24 @@ html {
 a#logo {
   float: right;
   margin: -2px 5px 0 0;
-  font: bold 150% sans-serif;
+  font: bold 150% "Unbounded", sans-serif;
   text-decoration: none;
-  color: #222;
+  color: var(--text);
+  text-shadow: 0 0 18px rgba(55,230,255,0.35);
 }
 a#logo em {
   font-style: normal;
-  color: #b0233a;
+  background: linear-gradient(100deg, var(--accent-a), var(--accent-b));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
 ul#header_bar, ul.horiz_tabs {
   padding: 3px 0 0 0;
   margin: 3px 0;
 }
 ul.horiz_tabs {
-  border-bottom: 1px solid #778;
+  border-bottom: 1px solid var(--line);
 }
 ul#header_bar li {
   list-style: none;
@@ -45,17 +67,21 @@ ul#header_bar li {
 ul.horiz_tabs li {
   list-style: none;
   display: inline-block;
-  padding: 3px 0.5em;
+  padding: 4px 0.9em;
   margin: 0 0 -1px 3px;
-  border: 1px solid #778;
-  background: #DDE;
+  border: 1px solid var(--line);
+  border-bottom: none;
+  border-radius: 6px 6px 0 0;
+  background: var(--panel);
+  color: var(--text-dim);
   text-decoration: none;
   font: bold 12px Verdana, sans-serif;
   white-space: nowrap;
 }
 ul.horiz_tabs li.selected {
-  background: white;
-  border-bottom: 1px solid white;
+  background: var(--panel-deep);
+  color: var(--accent-a);
+  border-bottom: 1px solid var(--panel-deep);
 }
 /* this div contains language_menu and next/prev nav_links */
 div#header_nav {
@@ -71,8 +97,14 @@ select#language_menu {
   margin: 0 0.5em 0 0;
 }
 a.nav_link {
-  font: 100% sans-serif;
-  margin: 0 0 0 0.5em;
+  font: bold 90% sans-serif;
+  margin: 0 0 0 0.6em;
+  color: var(--accent-a);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+}
+a.nav_link:hover {
+  border-bottom-color: currentColor;
 }
 
 /********  CANVAS  ********/
@@ -82,7 +114,7 @@ a.nav_link {
  * as a "stutter" when using "black with trails" background mode. */
 canvas {
     cursor: crosshair;
-    border:1px solid silver;
+    border: 1px solid var(--line);
     outline: none; /* turns off outline drawn when selecting with mouse */
     width: 100%;
     /*-webkit-tap-highlight-color: rgba(255, 255, 255, 0);*/
@@ -98,7 +130,7 @@ landscape mode:  leave blank area on right for user to scroll on iPhone etc
 */
 canvas:active {
     cursor: default;
-    border:1px dashed red;
+    border: 1px dashed var(--accent-a);
 }
 
 /*********** UI CONTROLS *************/
@@ -116,11 +148,14 @@ div.control_group {
 }
 textarea {
   font-family: monospace, monospace;
-  border:1px solid silver;
+  background: var(--panel);
+  color: var(--text);
+  border: 1px solid var(--line);
   max-width: 50em;
 }
 label {
   white-space: nowrap; /* keep checkbox and label text together */
+  color: var(--text-dim);
 }
 label, div.slider {
   font-family: sans-serif;
@@ -129,20 +164,38 @@ label, div.slider {
 }
 div.control_container input, div.control_container select {
   margin-left: 0.7em; margin-right: 0.3em;
+  background: var(--panel);
+  color: var(--text);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+}
+div.control_container input:focus, div.control_container select:focus {
+  outline: none;
+  border-color: var(--accent-a);
+  box-shadow: 0 0 0 2px rgba(55,230,255,0.25);
 }
 /* align slider controls, fixes Firefox layout */
 div.control_container input[type='range'] {
   vertical-align: bottom;
+  background: transparent;
+  border: none;
 }
 
 button.icon {
   margin: 0;
-  padding: 0;
+  padding: 4px;
   border-style: none;
+  border-radius: 4px;
   background-color: transparent;
 }
+button.icon img {
+  filter: invert(1) brightness(1.6);
+}
 button.icon:active {
-  background-color: gray;
+  background-color: var(--panel);
+}
+button.icon:hover {
+  background-color: var(--panel);
 }
 /* kludge for Firefox to get buttons to be same size as icon images they contain.
 * http://stackoverflow.com/questions/8859908/buttons-too-tall-on-firefox
@@ -159,17 +212,38 @@ input:focus {
   outline-width: thin;
 }
 
+button {
+  font-family: inherit;
+  background: var(--panel);
+  color: var(--text);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 6px 14px;
+}
+button:hover {
+  border-color: var(--accent-a);
+  color: var(--accent-a);
+}
+button.icon:hover, button.icon:active {
+  color: inherit;
+  border-color: transparent;
+}
+
 /******** GENERAL TEXT & HEADINGS ******/
 
 h1 {
   margin-top: 12px;
   margin-bottom: 4px;
   font: bold 130% sans-serif;
-  color: gray;
+  color: var(--text-dim);
 }
 p {
   max-width: 50em;
   margin-top: 1em;
+  color: var(--text);
+}
+a {
+  color: var(--accent-a);
 }
 
 /****** FOOTER ********/
@@ -177,6 +251,7 @@ p {
 div#footer2 {
   text-align: center;
   margin: 1.2em 0 0.3em 0;
+  color: var(--text-dim);
 }
 
 div#copyright {
