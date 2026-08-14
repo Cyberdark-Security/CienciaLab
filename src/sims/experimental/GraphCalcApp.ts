@@ -141,7 +141,7 @@ plot(expr: string, range1?: number, range2?: number, numPts?: number): void {
     numPts = numPts || 200;
     const incr = (range2 - range1)/numPts;
     if (incr <= 0) {
-      this.terminal.println('ERROR calling plot: range2 must be greater than range1');
+      this.terminal.println('ERROR al llamar a plot: range2 debe ser mayor que range1');
       return;
     }
     numPts += 1;  // extra point at end
@@ -164,7 +164,7 @@ plot(expr: string, range1?: number, range2?: number, numPts?: number): void {
         this.graphLine.memorize();
         this.x += incr;
       } else {
-        this.terminal.println('ERROR in plot: result is not a number '+expr);
+        this.terminal.println('ERROR en plot: el resultado no es un número '+expr);
         return;
       }
     }

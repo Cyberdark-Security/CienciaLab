@@ -31,9 +31,9 @@ enter key is typed in the text input field.
   <textarea id="term_output" cols=80 rows=20 wrap="soft"></textarea>
 </form>
 
-<p>BlankSlateApp has a LabCanvas and Terminal, and lets you experiment building
-things with scripts. Here is a sample script to try (copy the text and paste into
-Terminal input area).
+<p>BlankSlateApp tiene un LabCanvas y un Terminal, y permite experimentar construyendo
+cosas mediante scripts. Aquí hay un script de ejemplo para probar (copie el texto y péguelo
+en el área de entrada del Terminal).
 </p>
 
 <pre>
@@ -54,8 +54,8 @@ clock.resume();
 timer.startFiring();
 </pre>
 
-Here is another script to try, this one replicates what
-<a href="./SimpleApp-#LOCALE.html">SimpleApp</a> does.
+Aquí hay otro script para probar, este replica lo que hace
+<a href="./SimpleApp-#LOCALE.html">SimpleApp</a>.
 
 <pre>
 var point1 = PointMass.makeRectangle(1, 1.5, 'block');
@@ -82,7 +82,7 @@ timer.startFiring();
 clock.resume();
 </pre>
 
-Here is a script that runs the
+Aquí hay un script que ejecuta
 <a href="../springs/SingleSpringApp-#LOCALE.html">SingleSpringSim</a>
 
 <pre>
@@ -112,8 +112,8 @@ timer.startFiring();
 clock.resume();
 </pre>
 
-This script runs SingleSpringSim with a SimRunner and SimpleAdvance, so you don't need
-to set up your own callback for stepping the diffeq forward.
+Este script ejecuta SingleSpringSim con un SimRunner y SimpleAdvance, de modo que no es
+necesario configurar un callback propio para avanzar la ecuación diferencial.
 
 <pre>
 var simRect = new DoubleRect(-3, -2, 3, 2);
@@ -133,8 +133,8 @@ displayList.add(spring);
 simRun.resume();
 </pre>
 
-This script runs SingleSpringSim with a SimRunner and SimpleAdvance, and adds a
-pan-zoom control.
+Este script ejecuta SingleSpringSim con un SimRunner y SimpleAdvance, y agrega un
+control de pan-zoom.
 
 <pre>
 var simRect = new DoubleRect(-3, -2, 3, 2);
@@ -157,8 +157,8 @@ panzoom.style.display = 'block';
 simRun.resume();
 </pre>
 
-This script runs <a href="../pendulum/PendulumApp-#LOCALE.html">PendulumSim</a> with a
-SimRunner and SimpleAdvance.
+Este script ejecuta <a href="../pendulum/PendulumApp-#LOCALE.html">PendulumSim</a> con un
+SimRunner y SimpleAdvance.
 
 <pre>
 var simRect = new DoubleRect(-1.4, -0.9, 1.4, 0.9);
@@ -179,8 +179,8 @@ sim.getVarsList().getVariable(PendulumSim.en.ANGLE).setValue(Math.PI/8);
 simRun.resume();
 </pre>
 
-This script runs <a href="../roller/RollerSingleApp-#LOCALE.html">RollerSingleSim</a>
-with a SimRunner and SimpleAdvance.
+Este script ejecuta <a href="../roller/RollerSingleApp-#LOCALE.html">RollerSingleSim</a>
+con un SimRunner y SimpleAdvance.
 
 <pre>
 var simRect = new DoubleRect(-3.4, -3.4, 3.4, 3.4);
@@ -204,8 +204,8 @@ displayList.add(axes);
 simRun.resume();
 </pre>
 
-This script runs SingleSpringSim with a SimRunner and SimpleAdvance, and adds a
-checkbox to show the clock.
+Este script ejecuta SingleSpringSim con un SimRunner y SimpleAdvance, y agrega una
+casilla de verificación para mostrar el reloj.
 
 <pre>
 var simRect = new DoubleRect(-3, -2, 3, 2);
@@ -229,8 +229,8 @@ var cb = new CheckBoxControlBase('show clock', ()=>displayList.contains(dispCloc
 app.addControl(cb);
 </pre>
 
-This script runs SingleSpringSim with a SimRunner and SimpleAdvance, and includes
-DisplayAxes and EnergyBarGraph.
+Este script ejecuta SingleSpringSim con un SimRunner y SimpleAdvance, e incluye
+DisplayAxes y EnergyBarGraph.
 
 <pre>
 var simRect = new DoubleRect(-3, -2, 3, 2);
@@ -256,8 +256,8 @@ displayList.add(energy);
 simRun.resume();
 </pre>
 
-This script runs SingleSpringSim with a SimRunner and SimpleAdvance, and includes
-a DisplayGraph with some controls for which variables to graph.
+Este script ejecuta SingleSpringSim con un SimRunner y SimpleAdvance, e incluye
+un DisplayGraph con controles para elegir qué variables graficar.
 <pre>
 simView.setSimRect(new DoubleRect(-3, -2, 3, 2));
 var sim = new SingleSpringSim();
@@ -302,9 +302,9 @@ simRun.resume();
 </pre>
 
 
-This script runs SingleSpringSim with a SimRunner and SimpleAdvance, and adds a
-NumericControlBase to modify the block mass, and a NumericControl to modify the spring
-stiffness.
+Este script ejecuta SingleSpringSim con un SimRunner y SimpleAdvance, y agrega un
+NumericControlBase para modificar la masa del bloque, y un NumericControl para modificar
+la rigidez del resorte.
 
 <pre>
 var simRect = new DoubleRect(-3, -2, 3, 2);
@@ -334,8 +334,8 @@ var stopButton = new ButtonControl('stop', ()=>simRun.pause(), img);
 app.addControl(stopButton);
 </pre>
 
-This script runs SingleSpringSim with a DisplayGraph that has an AutoScale resizing it,
-a 'clear graph' button, and an Observer that resizes the DisplayAxes.
+Este script ejecuta SingleSpringSim con un DisplayGraph que tiene un AutoScale
+redimensionándolo, un botón para "limpiar gráfico" y un Observer que redimensiona el DisplayAxes.
 <pre>
 simView.setSimRect(new DoubleRect(-3, -2, 3, 2));
 var sim = new SingleSpringSim();

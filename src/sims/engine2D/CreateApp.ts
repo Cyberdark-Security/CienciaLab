@@ -214,7 +214,7 @@ parseURL(): void {
     if (result) {
       const gist = result[2];
       if (!gist.length) {
-        throw `gist not specified: ${cmd}`;
+        throw `gist no especificado: ${cmd}`;
       }
       // optional: can specify the name of the gist file
       let file = '';
@@ -225,7 +225,7 @@ parseURL(): void {
       fetch('https://api.github.com/gists/'+gist)
       .then(response => {
           if (!response.ok) {
-            throw `gist ${gist} not found; HTTP status = ${response.status}`;
+            throw `gist ${gist} no encontrado; código HTTP = ${response.status}`;
           }
           return response.json();
       })
@@ -240,12 +240,12 @@ parseURL(): void {
           // find the first file defined in gist
           const nms = Util.propertiesOf(data.files);
           if (!nms.length) {
-            throw `gist ${gist} has no file`;
+            throw `el gist ${gist} no tiene ningún archivo`;
           }
           file = nms[0];
         }
         if (!data.files[file]) {
-          throw `file ${file} not found in gist ${gist}`;
+          throw `archivo ${file} no encontrado en el gist ${gist}`;
         }
         this.editor_.value = data.files[file].content;
         this.terminal.eval(this.editor_.value);

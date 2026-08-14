@@ -25,37 +25,37 @@ enter key is typed in the text input field.
   <textarea id="term_output" cols=80 rows=20 wrap="soft"></textarea>
 </form>
 
-<p>This demonstrates using the myPhysicsLab library to draw graphs with JavaScript in
-the Terminal command line.</p>
+<p>Esto muestra el uso de la biblioteca CienciaLab para dibujar gráficos con JavaScript en
+la línea de comandos del Terminal.</p>
 
-<p>This graph shows a single GraphLine. However, you can change the style (color, line
-width, dots vs. lines) at any time, so it can look like there are several different
-graphs being drawn.
+<p>Este gráfico muestra una sola GraphLine. Sin embargo, se puede cambiar el estilo (color, ancho
+de línea, puntos o líneas) en cualquier momento, de modo que puede parecer que se están
+dibujando varios gráficos distintos.
 </p>
 
-<p>To clear all points from the GraphLine:</p>
+<p>Para borrar todos los puntos de la GraphLine:</p>
 <pre>
   graphLine.reset();
 </pre>
 
-<p>To plot a new graph use the "plot" command.  This adds points to the GraphLine, with the value for "x" going between the two given numbers.</p>
+<p>Para dibujar un nuevo gráfico se usa el comando "plot". Esto agrega puntos a la GraphLine, con el valor de "x" variando entre los dos números dados.</p>
 <pre>
   plot("x*x", -5, 5);
 </pre>
 
-<p>You can specify the number of points plotted as the 4th argument to plot (the
-default is 200). To add points to the GraphLine in a new color:</p>
+<p>Se puede especificar el número de puntos dibujados como cuarto argumento de plot (el
+valor por defecto es 200). Para agregar puntos a la GraphLine en un color nuevo:</p>
 <pre>
   graphLine.setColor("red");
   plot("-x*x", -5, 5, 50);
 </pre>
 
-<p>To change the area being shown (arguments are left, bottom, top, right)</p>
+<p>Para cambiar el área mostrada (los argumentos son izquierda, abajo, arriba, derecha)</p>
 <pre>
   simView.setSimRect(new DoubleRect(-6, -30, 6, 30));
 </pre>
 
-<p>To change line width or drawing mode:</p>
+<p>Para cambiar el ancho de línea o el modo de dibujo:</p>
 <pre>
   graphLine.setLineWidth(2);
   plot("x", -10, 10);
@@ -64,21 +64,11 @@ default is 200). To add points to the GraphLine in a new color:</p>
   plot("-x", -10, 10);
 </pre>
 
-<p>To redraw the entire GraphLine with a different style:</p>
+<p>Para redibujar toda la GraphLine con un estilo distinto:</p>
 <pre>
   graphLine.setColor('blue');
   graphLine.resetStyle();
   graph.reset();
-</pre>
-
-<p>To create a URL with a script that draws an equation: you can provide any of the
-above commands in the "query" portion of the URL (after the question mark) for this web
-page. Example:
-</p>
-
-<pre><a href='#MYPHYSICSLAB_URL/develop/build/sims/experimental/GraphCalcApp-en.html?graphLine.reset();plot(%228*Math.sin(x/2)*Math.sin(10*x)%22,-10,10,1000);'>
-#MYPHYSICSLAB_URL/develop/build/sims/experimental/GraphCalcApp-en.html?graphLine.reset()
-<br>;plot("8*Math.sin(x/2)*Math.sin(10*x)",-10,10,1000);</a>
 </pre>
 
 <br>
