@@ -40,19 +40,4 @@ también el archivo [NOTICE](NOTICE).
 Las modificaciones respecto al original: traducción completa de la interfaz al español,
 un dashboard/página de inicio propio, y el proceso de publicación en GitHub Pages.
 
-## Compilar localmente
-
-Requiere [Node.js](https://nodejs.org) (para TypeScript y esbuild), [Perl](https://www.perl.org)
-y [GNU Make](https://www.gnu.org/software/make/).
-
-```bash
-npm install --no-save typescript esbuild
-ln -s node_modules/esbuild/bin/esbuild esbuild
-node_modules/.bin/tsc
-make
-```
-
-Esto genera el sitio completo (solo en español) dentro de `build/`. Abre
-`build/index.html` en un navegador para verlo.
-
 &nbsp;
