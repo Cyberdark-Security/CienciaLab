@@ -65,8 +65,6 @@ billiards: $(foreach loc,$(LOCALE),\
   $(BUILD_DIR)/sims/engine2D/BilliardsApp-$(loc).html )
 billiards2: $(foreach loc,$(LOCALE),\
   $(BUILD_DIR)/sims/engine2D/Billiards2App-$(loc).html )
-blank: $(foreach loc,$(LOCALE),\
-  $(BUILD_DIR)/sims/engine2D/BlankApp-$(loc).html )
 blankslate: $(foreach loc,$(LOCALE),\
   $(BUILD_DIR)/sims/experimental/BlankSlateApp-$(loc).html )
 brachisto: $(foreach loc,$(LOCALE),\
@@ -103,12 +101,8 @@ create: $(foreach loc,$(LOCALE),\
   $(BUILD_DIR)/sims/engine2D/CreateApp-$(loc).html )
 create2: $(foreach loc,$(LOCALE),\
   $(BUILD_DIR)/sims/engine2D/CreateApp2-$(loc).html )
-curvedtest: $(foreach loc,$(LOCALE),\
-  $(BUILD_DIR)/sims/engine2D/CurvedTestApp-$(loc).html )
 danglestick: $(foreach loc,$(LOCALE),\
   $(BUILD_DIR)/sims/springs/DangleStickApp-$(loc).html )
-donothing: $(foreach loc,$(LOCALE),\
-  $(BUILD_DIR)/sims/engine2D/DoNothingApp-$(loc).html )
 double2dspring: $(foreach loc,$(LOCALE),\
   $(BUILD_DIR)/sims/springs/Double2DSpringApp-$(loc).html )
 doublependulum: $(foreach loc,$(LOCALE),\
@@ -169,8 +163,6 @@ pile: $(foreach loc,$(LOCALE),\
   $(BUILD_DIR)/sims/engine2D/PileApp-$(loc).html )
 pileattract: $(foreach loc,$(LOCALE),\
   $(BUILD_DIR)/sims/engine2D/PileAttractApp-$(loc).html )
-polygontest: $(foreach loc,$(LOCALE),\
-  $(BUILD_DIR)/sims/engine2D/PolygonTestApp-$(loc).html )
 reactionpendulum: $(foreach loc,$(LOCALE),\
   $(BUILD_DIR)/sims/pendulum/ReactionPendulumApp-$(loc).html )
 rigidbody: $(foreach loc,$(LOCALE),\
@@ -215,8 +207,6 @@ terminalspring2d: $(foreach loc,$(LOCALE),\
   $(BUILD_DIR)/sims/springs/TerminalSpring2DApp-$(loc).html )
 test: $(foreach loc,$(LOCALE),\
   $(BUILD_DIR)/test/Engine2DTests-$(loc).html )
-testbody: $(foreach loc,$(LOCALE),\
-  $(BUILD_DIR)/sims/engine2D/TestBodyApp-$(loc).html )
 testviewer: $(foreach loc,$(LOCALE),\
   $(BUILD_DIR)/test/TestViewerApp-$(loc).html )
 unittest: $(foreach loc,$(LOCALE),\
@@ -264,15 +254,12 @@ $(BUILD_DIR)/sims/springs/MultiSpringApp%.html : src/sims/springs/MultiSpringApp
 
 app_names := sims/engine2D/BilliardsApp \
 sims/engine2D/Billiards2App \
-sims/engine2D/BlankApp \
 sims/engine2D/CarSuspensionApp \
 sims/engine2D/CartPendulum2App \
 sims/engine2D/ChainApp \
 sims/engine2D/ContactApp \
 sims/engine2D/CreateApp \
 sims/engine2D/CreateApp2 \
-sims/engine2D/CurvedTestApp \
-sims/engine2D/DoNothingApp \
 sims/engine2D/DoublePendulum2App \
 sims/engine2D/FastBallApp \
 sims/engine2D/GearsApp \
@@ -285,9 +272,7 @@ sims/engine2D/PendulumClockApp \
 sims/engine2D/PendulumSpringApp \
 sims/engine2D/PileApp \
 sims/engine2D/PileAttractApp \
-sims/engine2D/PolygonTestApp \
 sims/engine2D/RigidBodyApp \
-sims/engine2D/TestBodyApp \
 sims/experimental/BikeTimerApp \
 sims/experimental/BlankSlateApp \
 sims/experimental/GraphCalcApp \
