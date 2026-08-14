@@ -1,142 +1,58 @@
-CienciaLab
-==========
-CienciaLab is my Spanish-language fork of **myPhysicsLab**, a library of real-time
-interactive animated physics simulations originally created by Erik Neumann. I added a
-full Spanish (`es`) locale throughout the codebase, a Spanish dashboard homepage, and a
-GitHub Actions workflow that builds and publishes the site to GitHub Pages
-automatically. The published site is Spanish-only by design (the build is configured
-to only compile the `es` locale, even though the underlying English/German strings
-from upstream are still present in the source for reference).
+# CienciaLab
 
-Live site: <https://cyberdark-security.github.io/CienciaLab/>
+**Un laboratorio de física interactivo, completamente en español.**
 
-All credit for the physics engine, the simulations, and the original architecture goes
-to Erik Neumann and the myPhysicsLab project — see the sections below (inherited from
-the upstream project) for how the library itself works and is licensed.
+![Captura de CienciaLab](docs-assets/screenshot.png)
 
-myPhysicsLab README
-===================
-myPhysicsLab provides JavaScript classes to build real-time interactive
-animated physics simulations.
+🔗 **Sitio en vivo:** <https://cyberdark-security.github.io/CienciaLab/>
 
-The [myPhysicsLab website](https://www.myphysicslab.com) shows the simulations running
-and contains explanations of the math behind them.
+---
 
+## Qué es esto
 
-Author and License
-------------------
-myPhysicsLab is provided as open source software under the
-[Apache 2.0 License](http://www.apache.org/licenses/). See the accompanying
-file named `LICENSE`. The author is Erik Neumann <erikn@myphysicslab.com>.
+CienciaLab es una traducción y curaduría al español de **[myPhysicsLab](https://www.myphysicslab.com)**,
+una librería de simulaciones de física interactivas en tiempo real creada originalmente
+por Erik Neumann. Cada simulación corre directamente en el navegador (sin backend, sin
+servidor) y se puede manipular en vivo: arrastra, suelta, cambia masas, resortes,
+gravedad, amortiguación y más.
 
-Source code is available at <https://github.com/myphysicslab/myphysicslab>.
+71 simulaciones, organizadas en 6 categorías:
 
+| Categoría | Contenido |
+|---|---|
+| **Péndulos** | Del péndulo simple al doble caótico |
+| **Resortes y Osciladores** | Masas, resortes y moléculas |
+| **Colisiones y Cuerpos Rígidos** | Billar, engranajes, cunas de Newton, física de contacto |
+| **Movimiento en Rampas y Curvas** | Trayectorias curvas, energía y la curva braquistócrona |
+| **Ecuaciones Diferenciales** | La cuerda vibrante como ecuación de onda |
+| **Experimental y Miscelánea** | Calculadoras gráficas, ruedas magnéticas y más |
 
-Building
---------
-It is possible to customize a myPhysicsLab simulation without building from source
-code, see
-[Customizing myPhysicsLab Simulations](https://www.myphysicslab.com/develop/docs/Customizing.html).
+El sitio se publica automáticamente en GitHub Pages mediante GitHub Actions cada vez que
+se sube un cambio a `master` — todo gratis, sin infraestructura propia.
 
-To build from source code:
+## Créditos y licencia
 
-1. Download the myPhysicsLab source code from
-    <https://github.com/myphysicslab/myphysicslab>. You can download a zip file
-    from that github page, or use
+Todo el mérito del motor de física, las simulaciones y la arquitectura original es de
+**Erik Neumann** y el proyecto myPhysicsLab (<https://github.com/myphysicslab/myphysicslab>).
+Este repositorio es un trabajo derivado bajo la [licencia Apache 2.0](LICENSE) — ver
+también el archivo [NOTICE](NOTICE).
 
-        git clone https://github.com/myphysicslab/myphysicslab.git
+Las modificaciones respecto al original: traducción completa de la interfaz al español,
+un dashboard/página de inicio propio, y el proceso de publicación en GitHub Pages.
 
-2. Install the required tools:
+## Compilar localmente
 
-    + [TypeScript](https://www.typescriptlang.org)
-        You should be able to execute `tsc --version` within
-        the `myphysicslab` directory.
-        Making an alias in your `.bash_profile` like this might be helpful:
+Requiere [Node.js](https://nodejs.org) (para TypeScript y esbuild), [Perl](https://www.perl.org)
+y [GNU Make](https://www.gnu.org/software/make/).
 
-            alias tsc=~/Documents/Programming/myphysicslab/node_modules/typescript/bin/tsc
+```bash
+npm install --no-save typescript esbuild
+ln -s node_modules/esbuild/bin/esbuild esbuild
+node_modules/.bin/tsc
+make
+```
 
-    + [esbuild](https://esbuild.github.io)
-        Make a symbolic link to the `esbuild` executable within
-        the `myphysicslab` directory.
-
-            ln -s node_modules/esbuild/bin/esbuild esbuild
-
-        You should then be able to execute
-        `./esbuild --version` within the `myphysicslab` directory
-
-    + [Perl](https://www.perl.org)
-
-    + [GNU Make](https://www.gnu.org/software/make/)
-
-3. Execute `tsc` at the command line. This will compile all the typescript `.ts` files
-    to become JavaScript `.js` files in the `build` directory.
-
-4. Execute `make` at the command line. This creates `.html` files and
-    bundled `.js` files in the `build` directory for all applications and tests in all
-    language versions. Execute `make help` to see available options.
-
-5.  Open the file `/build/index-en.html` with a browser. This has
-    links to all the example files that were built.
-
-See [Building myPhysicsLab Software](https://www.myphysicslab.com/develop/docs/Building.html)
-for more information about the build process.
-
-
-Installation Hints
-------------------
-Here are some hints about installing tools, this was on MacOS. Following
-[this page](https://dyclassroom.com/howto-mac/how-to-install-typescript-on-mac-using-node-npm)
-I used `HomeBrew` to install `node`, and then used node's `npm` to install the other
-tools locally inside the myphysicslab directory:
-
-        cd myphysicslab
-        npm install typescript
-        npm install esbuild
-
-Those commands create some directories and files (for example `node_modules`) inside
-the myphysicslab directory that are unrelated to the myphysicslab project. The
-`.gitignore` file contains entries to prevent these from being added to the
-myphysicslab project.
-
-Test whether your installation is ready to build myphysicslab:
-
-        cd myphysicslab
-        tsc --version
-        ./esbuild --version
-        perl --version
-        make --version
-
-
-Documentation
--------------
-See [myPhysicsLab Documentation](https://www.myphysicslab.com/develop/docs/index.html)
-for overview of architecture and for detailed documentation of software.
-
-Building the documentation requires some additional tools, see
-[Building myPhysicsLab Software](https://www.myphysicslab.com/develop/docs/Building.html#buildingthedocumentation)
-
-
-Examples
---------
-There are around 50 different simulations in the source code, each of which has
-has an example file which is mainly for development and testing. Find them in the
-[examples index](https://www.myphysicslab.com/develop/build/index-en.html).
-
-
-History
--------
-myPhysicsLab was started in 2001 using Java. From 2013 to 2016 the code was converted
-to JavaScript that depended on Google Closure Compiler.
-
-In 2023 the code was converted to TypeScript for a couple of reasons: to be able to
-generate documentation, and because
-[Google Closure Library is being retired](https://github.com/google/closure-library/issues/1214).
-
-Because of how modules work in TypeScript, sometimes several classes or interfaces
-are combined into a single file. For example the file `util/Observe.ts` contains what
-was previously in 10 separate files. This can make finding things a little harder
-in the new scheme.
-
-&nbsp;
+Esto genera el sitio completo (solo en español) dentro de `build/`. Abre
+`build/index.html` en un navegador para verlo.
 
 &nbsp;
