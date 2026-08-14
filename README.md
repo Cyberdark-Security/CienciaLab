@@ -16,7 +16,7 @@ por Erik Neumann. Cada simulación corre directamente en el navegador (sin backe
 servidor) y se puede manipular en vivo: arrastra, suelta, cambia masas, resortes,
 gravedad, amortiguación y más.
 
-66 simulaciones, organizadas en 6 categorías:
+63 simulaciones, organizadas en 6 categorías:
 
 | Categoría | Contenido |
 |---|---|

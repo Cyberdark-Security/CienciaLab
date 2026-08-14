@@ -65,8 +65,6 @@ billiards: $(foreach loc,$(LOCALE),\
   $(BUILD_DIR)/sims/engine2D/BilliardsApp-$(loc).html )
 billiards2: $(foreach loc,$(LOCALE),\
   $(BUILD_DIR)/sims/engine2D/Billiards2App-$(loc).html )
-blankslate: $(foreach loc,$(LOCALE),\
-  $(BUILD_DIR)/sims/experimental/BlankSlateApp-$(loc).html )
 brachisto: $(foreach loc,$(LOCALE),\
   $(BUILD_DIR)/sims/roller/BrachistoApp-$(loc).html )
 carsuspension: $(foreach loc,$(LOCALE),\
@@ -141,8 +139,6 @@ moveabledoublependulum: $(foreach loc,$(LOCALE),\
   $(BUILD_DIR)/sims/pendulum/MoveableDoublePendulumApp-$(loc).html )
 moveablependulum: $(foreach loc,$(LOCALE),\
   $(BUILD_DIR)/sims/pendulum/MoveablePendulumApp-$(loc).html )
-multigraphcalc2: $(foreach loc,$(LOCALE),\
-  $(BUILD_DIR)/sims/experimental/MultiGraphCalc2App-$(loc).html )
 multiplecollision: $(foreach loc,$(LOCALE),\
   $(BUILD_DIR)/sims/engine2D/MultipleCollisionApp-$(loc).html )
 multispring: $(foreach loc,$(LOCALE),\
@@ -183,8 +179,6 @@ rollersingle: $(foreach loc,$(LOCALE),\
   $(BUILD_DIR)/sims/roller/RollerSingleApp-$(loc).html )
 rollerspring: $(foreach loc,$(LOCALE),\
   $(BUILD_DIR)/sims/roller/RollerSpringApp-$(loc).html )
-simple: $(foreach loc,$(LOCALE),\
-  $(BUILD_DIR)/sims/experimental/SimpleApp-$(loc).html )
 singletest: $(foreach loc,$(LOCALE),\
   $(BUILD_DIR)/test/SingleTest-$(loc).html )
 singleviewer: $(foreach loc,$(LOCALE),\
@@ -215,11 +209,6 @@ vectorgraphpendulum: $(foreach loc,$(LOCALE),\
   $(BUILD_DIR)/sims/pendulum/VectorGraphPendulumApp-$(loc).html )
 
 # special rules for HTML file which requires different-named JS file
-
-$(BUILD_DIR)/sims/experimental/MultiGraphCalc2App%.html : \
-  src/sims/experimental/MultiGraphCalc2App.html $(macros_req) | settings \
-  $(BUILD_DIR)/sims/experimental/GraphCalc2App%.js $(build_images) $(bld_css)
-	./prep_html.pl $< $@ src/index_order.txt
 
 $(BUILD_DIR)/sims/engine2D/Billiards2App%.html : \
   src/sims/engine2D/Billiards2App.html $(macros_req) | settings \
@@ -274,11 +263,8 @@ sims/engine2D/PileApp \
 sims/engine2D/PileAttractApp \
 sims/engine2D/RigidBodyApp \
 sims/experimental/BikeTimerApp \
-sims/experimental/BlankSlateApp \
 sims/experimental/GraphCalcApp \
 sims/experimental/GraphCalc2App \
-sims/experimental/MultiGraphCalc2App \
-sims/experimental/SimpleApp \
 sims/misc/CollisionCombo \
 sims/misc/MagnetWheelApp \
 sims/misc/RobotSpeedApp \
