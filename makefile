@@ -230,6 +230,14 @@ $(BUILD_DIR)/sims/springs/Molecule2App%.html : src/sims/springs/Molecule2App.htm
   $(build_images) $(bld_css)
 	./prep_html.pl $< $@ src/index_order.txt
 
+# Molecule2App.html loads BlankSlateApp's compiled JS directly (see its hardcoded
+# <script src>), so it has no JS of its own; but it's still listed in bld_apps so its
+# -es.html gets built. This explicit (non-pattern) rule stops make from trying to
+# esbuild a nonexistent build/sims/springs/Molecule2App.js via the generic %-es.js rule.
+$(BUILD_DIR)/sims/springs/Molecule2App-es.js: $(BUILD_DIR)/sims/experimental/BlankSlateApp-es.js
+	@mkdir -p $(dir $@)
+	cp $< $@
+
 $(BUILD_DIR)/sims/springs/TerminalSpring2DApp%.html : \
   src/sims/springs/TerminalSpring2DApp.html $(macros_req) | settings \
   $(BUILD_DIR)/sims/springs/TerminalSpringApp%.js $(build_images) $(bld_css)
